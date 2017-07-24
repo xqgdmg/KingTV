@@ -12,7 +12,7 @@ android {
             InputStream inputStream = project.rootProject.file('local.properties').newDataInputStream() ;
             properties.load( inputStream )
 
-            //读取文件
+            //读取文件，没有这个文件，只能注释了
 //            def storeFileDir = properties.getProperty('storeFile.file')
 //            storeFile file( storeFileDir )
 
