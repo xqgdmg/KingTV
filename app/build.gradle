@@ -13,8 +13,8 @@ android {
             properties.load( inputStream )
 
             //读取文件
-            def storeFileDir = properties.getProperty('storeFile.file')
-            storeFile file( storeFileDir )
+//            def storeFileDir = properties.getProperty('storeFile.file')
+//            storeFile file( storeFileDir )
 
             //读取字段
             def key_keyAlias = properties.getProperty( 'keyAlias' )
@@ -27,7 +27,7 @@ android {
         }
     }
     compileSdkVersion 24
-    buildToolsVersion "24.0.2"
+    buildToolsVersion '25.0.0'
     defaultConfig {
         applicationId "com.king.tv"
         minSdkVersion 15
@@ -76,9 +76,7 @@ dependencies {
     compile 'jp.wasabeef:glide-transformations:2.0.1'
     compile 'com.jakewharton:butterknife:8.5.1'
     apt 'com.jakewharton:butterknife-compiler:8.5.1'
-//    annotationProcessor 'com.jakewharton:butterknife-compiler:8.5.1'
     compile 'com.google.dagger:dagger:2.9'
-    //    annotationProcessor 'com.google.dagger:dagger-compiler:2.9'
     apt 'com.google.dagger:dagger-compiler:2.9'
     provided 'org.glassfish:javax.annotation:10.0-b28'
     compile 'org.greenrobot:greendao:3.2.0'
@@ -89,13 +87,6 @@ dependencies {
     compile 'com.king.thread:nevercrash:1.0.0'
     compile 'com.bigkoo:convenientbanner:2.0.5'
     compile 'com.qiniu:happy-dns:0.2.+'
-    //optional, help to generate the final applicatio
-
-    //    provided('com.tencent.tinker:tinker-android-anno:1.7.7')
-
-    //tinker's main Android lib
-
-    //    compile 'com.tencent.tinker:tinker-android-lib:1.7.7'
     // 多dex配置
     compile 'com.android.support:multidex:1.0.1'
     //sdk
