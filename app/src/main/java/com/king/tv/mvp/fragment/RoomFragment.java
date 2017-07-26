@@ -36,8 +36,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 /**
- * @author Jenly <a href="mailto:jenly1314@gmail.com">Jenly</a>
- * @since 2017/3/7
+ * 半屏播放页面 用到 VideoFragment（七牛直播云 PLVideoTextureView）
  */
 
 public class RoomFragment extends BaseFragment<IRoomView, RoomPresenter> implements IRoomView {
@@ -253,6 +252,8 @@ public class RoomFragment extends BaseFragment<IRoomView, RoomPresenter> impleme
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.videoContent:
+
+            // 点击视频
             case R.id.frameVideo:
                 clickFrameVideo();
                 break;

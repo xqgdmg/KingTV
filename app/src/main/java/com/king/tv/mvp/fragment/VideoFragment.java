@@ -18,8 +18,7 @@ import com.pili.pldroid.player.widget.PLVideoView;
 import butterknife.BindView;
 
 /**
- * @author Jenly <a href="mailto:jenly1314@gmail.com">Jenly</a>
- * @since 2017/3/8
+ * 七牛云直播，android播放客户端
  */
 
 public class VideoFragment extends BaseFragment<BaseView, BasePresenter<BaseView>> {

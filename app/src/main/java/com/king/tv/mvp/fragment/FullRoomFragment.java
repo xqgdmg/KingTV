@@ -30,7 +30,7 @@ import butterknife.OnClick;
 import jp.wasabeef.glide.transformations.BlurTransformation;
 
 /**
- * 全屏直播
+ * 竖向全屏直播 用到 VideoFragment（七牛直播云 PLVideoTextureView）
  */
 
 public class FullRoomFragment extends BaseFragment<IRoomView, RoomPresenter> implements IRoomView {

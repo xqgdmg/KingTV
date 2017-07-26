@@ -4,11 +4,14 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
+
+    <!-- 整个视频页面 -->
     <RelativeLayout
         android:id="@+id/videoContent"
         android:layout_width="match_parent"
         android:layout_height="200dp"
         android:background="@color/black">
+        <!-- 视频在这里 -->
         <FrameLayout
             android:id="@+id/frameVideo"
             android:layout_width="match_parent"
@@ -17,9 +20,10 @@
             <ProgressBar
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                />
+                android:layout_gravity="center"/>
         </FrameLayout>
+
+        <!-- 以下是视频的标题等其他信息 -->
         <ImageView
             android:id="@+id/ivBack"
             android:layout_width="wrap_content"
@@ -56,6 +60,8 @@
                 android:src="@drawable/btn_zhibojian_quanping_selector"/>
         </RelativeLayout>
     </RelativeLayout>
+
+    <!-- 下面的，不重要 -->
     <LinearLayout
         android:id="@+id/llRoomChat"
         android:orientation="vertical"
