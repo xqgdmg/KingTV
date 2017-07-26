@@ -7,6 +7,7 @@ import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -37,6 +38,7 @@ import butterknife.OnClick;
 
 /**
  * 半屏播放页面 用到 VideoFragment（七牛直播云 PLVideoTextureView）
+ * 需要 uid
  */
 
 public class RoomFragment extends BaseFragment<IRoomView, RoomPresenter> implements IRoomView {
@@ -69,21 +71,14 @@ public class RoomFragment extends BaseFragment<IRoomView, RoomPresenter> impleme
 
 
     private ViewPagerFragmentAdapter viewPagerFragmentAdapter;
-
     private List<CharSequence> listTitle;
-
     private List<Fragment> listData;
-
     private Room room;
-
     private String uid;
-
     private AnchorInfoFragment anchorInfoFragment;
 
     public static RoomFragment newInstance(String uid) {
-
         Bundle args = new Bundle();
-
         RoomFragment fragment = new RoomFragment();
         fragment.uid = uid;
         fragment.setArguments(args);
@@ -96,7 +91,6 @@ public class RoomFragment extends BaseFragment<IRoomView, RoomPresenter> impleme
         getActivity().getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
         return super.onCreateView(inflater, container, savedInstanceState);
     }
-
 
     @Override
     public int getRootViewId() {
@@ -119,30 +113,14 @@ public class RoomFragment extends BaseFragment<IRoomView, RoomPresenter> impleme
         anchorInfoFragment = AnchorInfoFragment.newInstance(room);
         listData.add(anchorInfoFragment);
         viewPagerFragmentAdapter = new ViewPagerFragmentAdapter(getFragmentManager(), listData, listTitle);
-
         viewPager.setAdapter(viewPagerFragmentAdapter);
         tabLayout.setupWithViewPager(viewPager);
 
-//        tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
-//            @Override
-//            public void onTabSelected(TabLayout.Tab tab) {
-//                if(tab.getText().equals(getText(R.string.room_anchor))){
-//                    anchorInfoFragment.onUpdateAnchor(room);
-//                }
-//            }
-//
-//            @Override
-//            public void onTabUnselected(TabLayout.Tab tab) {
-//
-//            }
-//
-//            @Override
-//            public void onTabReselected(TabLayout.Tab tab) {
-//
-//            }
-//        });
     }
 
+    /**
+     * 设置视频的比例
+     */
     public void updateVideoLayoutParams(){
         ViewGroup.LayoutParams lp = videoContent.getLayoutParams();
         if(isLandscape()){
@@ -164,20 +142,32 @@ public class RoomFragment extends BaseFragment<IRoomView, RoomPresenter> impleme
         return new RoomPresenter(getApp());
     }
 
+    /**
+     * uid 进入了方剂，刷新页面而已，不是重点
+     */
     @Override
     public void enterRoom(Room room) {
         this.room = room;
-        LogUtils.d("room");
-        anchorInfoFragment.onUpdateAnchor(room);
-        viewPagerFragmentAdapter.notifyDataSetChanged();
+        Log.e("chris","enterRoom");
+        anchorInfoFragment.onUpdateAnchor(room);// 另一个Fragment更新信息，不重要
+        viewPagerFragmentAdapter.notifyDataSetChanged();// 更新视频下面的信息，不重要
     }
 
+    /**
+     * 关键看这里
+     *
+     * 获取了服务器返回的 url
+     *
+     * 开始播放视频
+     */
     @Override
     public void playUrl(String url) {
-        LogUtils.d("playUrl:" + url);
+        Log.e("chris","playUrl:" + url);
         if (videoFragment == null) {
             videoFragment = VideoFragment.newInstance(url,false);
         }
+
+        // 替换 videoFragment 进来，把url给他就完事 了
         replaceChildFragment(R.id.frameVideo, videoFragment);
     }
 
@@ -213,13 +203,6 @@ public class RoomFragment extends BaseFragment<IRoomView, RoomPresenter> impleme
 
     }
 
-
-    //-------------------------------
-
-    public void clickFrameVideo(){
-
-    }
-
     public void clickBack(){
         if(isLandscape()){
             getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
@@ -248,15 +231,10 @@ public class RoomFragment extends BaseFragment<IRoomView, RoomPresenter> impleme
         startLogin();
     }
 
-    @OnClick({R.id.frameVideo, R.id.ivBack, R.id.ivShare, R.id.ivFullScreen, R.id.videoContent, R.id.tvFollow})
+    @OnClick({ R.id.ivBack, R.id.ivShare, R.id.ivFullScreen, R.id.tvFollow})
     public void onClick(View view) {
         switch (view.getId()) {
-            case R.id.videoContent:
 
-            // 点击视频
-            case R.id.frameVideo:
-                clickFrameVideo();
-                break;
             case R.id.ivBack:
                 clickBack();
                 break;

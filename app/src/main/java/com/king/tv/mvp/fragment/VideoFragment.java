@@ -3,14 +3,12 @@ package com.king.tv.mvp.fragment;
 
 import android.os.Bundle;
 import android.view.View;
-import android.view.ViewGroup;
 
 import com.king.base.util.LogUtils;
 import com.king.tv.R;
 import com.king.tv.mvp.base.BaseFragment;
 import com.king.tv.mvp.base.BasePresenter;
 import com.king.tv.mvp.base.BaseView;
-import com.king.tv.util.DensityUtil;
 import com.pili.pldroid.player.PLMediaPlayer;
 import com.pili.pldroid.player.widget.PLVideoTextureView;
 import com.pili.pldroid.player.widget.PLVideoView;
@@ -19,24 +17,23 @@ import butterknife.BindView;
 
 /**
  * 七牛云直播，android播放客户端
+ * 需要传一个 url
+ * 页面只有一个全屏的 PLVideoTextureView
  */
 
 public class VideoFragment extends BaseFragment<BaseView, BasePresenter<BaseView>> {
 
 
-    @BindView(R.id.vtv)
-    PLVideoTextureView vtv;
+    @BindView(R.id.PLVideoTextureView)
+    PLVideoTextureView PLVideoTextureView;
 
     private int mRotation;
-
     private String url;
-
     private boolean isFull;
 
     public static VideoFragment newInstance(String url,boolean isFull) {
 
         Bundle args = new Bundle();
-
         VideoFragment fragment = new VideoFragment();
         fragment.url = url;
         fragment.isFull = isFull;
@@ -51,34 +48,33 @@ public class VideoFragment extends BaseFragment<BaseView, BasePresenter<BaseView
 
     @Override
     public void initUI() {
-        LogUtils.d("url:" + url);
-        vtv.setVideoPath(url);
+        PLVideoTextureView.setVideoPath(url);
         if(isFull){
-            vtv.setDisplayOrientation(PLVideoView.ASPECT_RATIO_PAVED_PARENT);
+            PLVideoTextureView.setDisplayOrientation(PLVideoView.ASPECT_RATIO_PAVED_PARENT);
         }else{
-            vtv.setDisplayOrientation(PLVideoView.ASPECT_RATIO_16_9);
+            PLVideoTextureView.setDisplayOrientation(PLVideoView.ASPECT_RATIO_16_9);
         }
-        vtv.setOnPreparedListener(new PLMediaPlayer.OnPreparedListener() {
+        PLVideoTextureView.setOnPreparedListener(new PLMediaPlayer.OnPreparedListener() {
             @Override
             public void onPrepared(PLMediaPlayer plMediaPlayer) {
                 LogUtils.d("onPrepared:" + url);
                 start();
             }
         });
-        vtv.setOnBufferingUpdateListener(new PLMediaPlayer.OnBufferingUpdateListener() {
+        PLVideoTextureView.setOnBufferingUpdateListener(new PLMediaPlayer.OnBufferingUpdateListener() {
             @Override
             public void onBufferingUpdate(PLMediaPlayer plMediaPlayer, int i) {
                 if(i>0)
                     LogUtils.d("onBufferingUpdate|" + i);
             }
         });
-        vtv.setOnCompletionListener(new PLMediaPlayer.OnCompletionListener() {
+        PLVideoTextureView.setOnCompletionListener(new PLMediaPlayer.OnCompletionListener() {
             @Override
             public void onCompletion(PLMediaPlayer plMediaPlayer) {
                 LogUtils.d("onCompletion");
             }
         });
-        vtv.setOnInfoListener(new PLMediaPlayer.OnInfoListener() {
+        PLVideoTextureView.setOnInfoListener(new PLMediaPlayer.OnInfoListener() {
             @Override
             public boolean onInfo(PLMediaPlayer plMediaPlayer, int i, int i1) {
                 LogUtils.d("onInfo|i:" + i + "--i1:" + i1);
@@ -86,7 +82,7 @@ public class VideoFragment extends BaseFragment<BaseView, BasePresenter<BaseView
             }
         });
 
-        vtv.setOnErrorListener(new PLMediaPlayer.OnErrorListener() {
+        PLVideoTextureView.setOnErrorListener(new PLMediaPlayer.OnErrorListener() {
             @Override
             public boolean onError(PLMediaPlayer plMediaPlayer, int i) {
                 LogUtils.w("onError:i:" + i);
@@ -98,30 +94,30 @@ public class VideoFragment extends BaseFragment<BaseView, BasePresenter<BaseView
     }
 
     public PLVideoTextureView getVideoView(){
-        return vtv;
+        return PLVideoTextureView;
     }
 
     public boolean isPlaying(){
-        return vtv.isPlaying();
+        return PLVideoTextureView.isPlaying();
     }
 
     private void start(){
-        if(vtv!=null)
-            vtv.start();
+        if(PLVideoTextureView !=null)
+            PLVideoTextureView.start();
     }
     public void pause(){
-        if(vtv!=null)
-            vtv.pause();
+        if(PLVideoTextureView !=null)
+            PLVideoTextureView.pause();
     }
 
     public void stopPlayback(){
-        if(vtv!=null)
-            vtv.stopPlayback();
+        if(PLVideoTextureView !=null)
+            PLVideoTextureView.stopPlayback();
 
     }
 
     public void seekTo(long i){
-        vtv.seekTo(i);
+        PLVideoTextureView.seekTo(i);
     }
 
     @Override
@@ -137,7 +133,7 @@ public class VideoFragment extends BaseFragment<BaseView, BasePresenter<BaseView
     }
 
     public int getDisplayAspectRatio(){
-        return vtv.getDisplayAspectRatio();
+        return PLVideoTextureView.getDisplayAspectRatio();
     }
 
     @Override
@@ -148,7 +144,7 @@ public class VideoFragment extends BaseFragment<BaseView, BasePresenter<BaseView
 
 
     public void onClickRotate(View v) {
-        mRotation = (vtv.getDisplayAspectRatio() + 90) % 360;
+        mRotation = (PLVideoTextureView.getDisplayAspectRatio() + 90) % 360;
         setDisplayAspectRatio(mRotation);
     }
 
@@ -163,7 +159,7 @@ public class VideoFragment extends BaseFragment<BaseView, BasePresenter<BaseView
      *
      */
     public void setDisplayAspectRatio(int ratio){
-        vtv.setDisplayAspectRatio(ratio);
+        PLVideoTextureView.setDisplayAspectRatio(ratio);
     }
 
     /**
@@ -172,14 +168,14 @@ public class VideoFragment extends BaseFragment<BaseView, BasePresenter<BaseView
      *      0/90/180/270
      */
     public void setDisplayOrientation(int orientation){
-        vtv.setDisplayOrientation(orientation);
+        PLVideoTextureView.setDisplayOrientation(orientation);
     }
 
     public void play(String url){
         this.url = url;
         LogUtils.d("url:" + url);
-        vtv.setVideoPath(url);
-        vtv.start();
+        PLVideoTextureView.setVideoPath(url);
+        PLVideoTextureView.start();
     }
 
 

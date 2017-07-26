@@ -3,6 +3,7 @@ package com.king.tv.mvp.fragment;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.text.Layout;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -31,6 +32,7 @@ import jp.wasabeef.glide.transformations.BlurTransformation;
 
 /**
  * 竖向全屏直播 用到 VideoFragment（七牛直播云 PLVideoTextureView）
+ * 需要 uid 和 coverUrl
  */
 
 public class FullRoomFragment extends BaseFragment<IRoomView, RoomPresenter> implements IRoomView {
@@ -85,6 +87,7 @@ public class FullRoomFragment extends BaseFragment<IRoomView, RoomPresenter> imp
         FullRoomFragment fragment = new FullRoomFragment();
         fragment.uid = uid;
         fragment.coverUrl = coverUrl;
+        Log.e("chris","coverUrl==" + coverUrl);
         fragment.setArguments(args);
         return fragment;
     }
