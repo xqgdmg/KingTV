@@ -29,8 +29,7 @@ import java.util.List;
 import butterknife.BindView;
 
 /**
- * @author Jenly <a href="mailto:jenly1314@gmail.com">Jenly</a>
- * @since 2017/2/21
+ * 首页直播列表
  */
 
 public class LiveListFragment extends BaseFragment<ILiveListView, LiveListPresenter> implements ILiveListView {
@@ -85,7 +84,6 @@ public class LiveListFragment extends BaseFragment<ILiveListView, LiveListPresen
 
         SpaceDecoration spaceDecoration = new SpaceDecoration(DensityUtil.dp2px(context,6));
         easyRecyclerView.addItemDecoration(spaceDecoration);
-//        recyclerView.setRefreshingColor(R.color.colorPrimary);
         easyRecyclerView.setRefreshingColorResources(R.color.progress_color);
         listData = new ArrayList<>();
         easyLiveAdapter = new EasyLiveAdapter(context,listData,isSearch);
@@ -190,7 +188,6 @@ public class LiveListFragment extends BaseFragment<ILiveListView, LiveListPresen
 
     @Override
     public void onGetLiveList(List<LiveInfo> list) {
-//        toSetList(listData,list,false);
         easyLiveAdapter.clear();
         easyLiveAdapter.addAll(list);
         refreshView();
