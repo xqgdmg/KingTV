@@ -1,6 +1,7 @@
-竖向全屏直播 FullRoomFragment
+竖向全屏直播 FullRoomFragment 用到 VideoFragment（七牛直播云 PLVideoTextureView）
 首页直播列表 LiveListFragment
-
+半屏播放页面 RoomFragment 用到 VideoFragment（七牛直播云 PLVideoTextureView）
+webview页面 WebFragment
 
 
 
