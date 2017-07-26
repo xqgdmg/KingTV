@@ -30,8 +30,7 @@ import butterknife.OnClick;
 import jp.wasabeef.glide.transformations.BlurTransformation;
 
 /**
- * @author Jenly <a href="mailto:jenly1314@gmail.com">Jenly</a>
- * @since 2017/5/2
+ * 全屏直播
  */
 
 public class FullRoomFragment extends BaseFragment<IRoomView, RoomPresenter> implements IRoomView {

@@ -8,6 +8,8 @@
         android:id="@+id/videoContent"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
+        <!-- 全屏背景 和 进度条-->
         <FrameLayout
             android:id="@+id/frameVideo"
             android:layout_width="match_parent"
@@ -26,6 +28,8 @@
                 android:layout_gravity="center"
                 />
         </FrameLayout>
+
+        <!-- 主播信息 -->
         <RelativeLayout
             android:id="@+id/rlAnchorInfo"
             android:orientation="horizontal"
@@ -73,6 +77,7 @@
             android:layout_marginRight="10dp"
             android:layout_marginBottom="4dp"
             android:src="@drawable/btn_close_selector"/>
+        <!-- id -->
         <TextView
             android:id="@+id/tvAccount"
             android:layout_width="wrap_content"
@@ -85,6 +90,8 @@
             android:src="@drawable/btn_close_selector"
             android:maxLines="1"
             android:singleLine="true"/>
+
+        <!-- 点心，送礼物动画 -->
         <com.king.view.flutteringlayout.FlutteringLayout
             android:id="@+id/flutteringLayout"
             android:layout_width="140dp"
@@ -101,6 +108,8 @@
                 android:layout_alignParentBottom="true"
                 android:layout_centerHorizontal="true"/>
             </com.king.view.flutteringlayout.FlutteringLayout>
+
+        <!-- 下面的不用看了 -->
         <LinearLayout
             android:id="@+id/rlRoomInfo"
             android:orientation="horizontal"

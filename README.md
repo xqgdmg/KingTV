@@ -1,4 +1,10 @@
+竖向全屏直播 FullRoomFragment
 
+
+
+
+
+////////////////////////////////////////////以下原作者的部分///////////////////////////////////////////
 # KingTV
 [![Download](https://img.shields.io/badge/download-App-blue.svg)](https://raw.githubusercontent.com/jenly1314/KingsTV/master/app/app-release.apk)
 [![](https://jitpack.io/v/jenly1314/KingTV.svg)](https://jitpack.io/#jenly1314/KingTV)
