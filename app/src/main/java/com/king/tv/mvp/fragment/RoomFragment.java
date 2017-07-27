@@ -59,7 +59,6 @@ public class RoomFragment extends BaseFragment<IRoomView, RoomPresenter> impleme
     RelativeLayout rlRoomInfo;
     @BindView(R.id.llRoomChat)
     LinearLayout llRoomChat;
-
     @BindView(R.id.videoContent)
     RelativeLayout videoContent;
     @BindView(R.id.tabLayout)
